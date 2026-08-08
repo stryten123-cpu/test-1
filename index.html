@@ -33,8 +33,8 @@
     .mark{
       display:inline-grid;
       place-items:center;
-      width:90px;
-      height:54px;
+      width:270px;
+      height:162px;
       border-radius:10px;
       overflow:hidden;
       margin-bottom:14px;
@@ -55,22 +55,6 @@
       font-size:18px;
       max-width:600px;
       margin:0 auto;
-    }
-    .search-box {
-      max-width: 500px;
-      margin: 25px auto 0;
-    }
-    .search-box input {
-      width: 100%;
-      padding: 14px 20px;
-      border-radius: 12px;
-      border: 1px solid rgba(0,0,0,0.15);
-      font-size: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      outline: none;
-    }
-    .search-box input:focus {
-      border-color: var(--rose);
     }
     .grid{
       display:grid;
@@ -102,15 +86,15 @@
       margin-bottom:12px;
     }
     .card-icon{
-      width:44px;
-      height:44px;
-      border-radius:14px;
+      width:15px;
+      height:15px;
+      border-radius:4px;
       background:var(--rose2);
       color:var(--rose);
       display:grid;
       place-items:center;
       font-weight:900;
-      font-size:18px;
+      font-size:8px;
       flex-shrink:0;
     }
     .card-title{
@@ -145,9 +129,6 @@
       </div>
       <h1>Cố Lên</h1>
       <p>Chọn một trong những bài Test này.</p>
-      <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Search tests (e.g., Test 15)..." onkeyup="filterTests()" />
-      </div>
     </div>
 
     <div id="quizGrid" class="grid"></div>
@@ -174,19 +155,6 @@ for (let i = 1; i <= totalTests; i++) {
     <div class="btn">Start Test ${i} →</div>
   `;
   grid.appendChild(card);
-}
-
-function filterTests() {
-  const query = document.getElementById("searchInput").value.toLowerCase();
-  const cards = document.querySelectorAll(".card");
-  cards.forEach(card => {
-    const title = card.getAttribute("data-title").toLowerCase();
-    if (title.includes(query)) {
-      card.style.display = "flex";
-    } else {
-      card.style.display = "none";
-    }
-  });
 }
 </script>
 </body>
