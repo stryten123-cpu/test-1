@@ -58,16 +58,16 @@
     }
     .grid{
       display:grid;
-      grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
-      gap:20px;
+      grid-template-columns:repeat(auto-fill,minmax(93px,1fr));
+      gap:12px;
       margin-top:36px;
     }
     .card{
       background:rgba(255,253,250,.96);
       border:1px solid rgba(255,255,255,.8);
-      border-radius:20px;
+      border-radius:12px;
       box-shadow:var(--shadow);
-      padding:24px;
+      padding:10px;
       text-decoration:none;
       color:var(--ink);
       transition:transform .2s ease, box-shadow .2s ease;
@@ -76,14 +76,14 @@
       justify-content:space-between;
     }
     .card:hover{
-      transform:translateY(-4px);
-      box-shadow:0 28px 80px rgba(63,37,30,.2);
+      transform:translateY(-2px);
+      box-shadow:0 12px 30px rgba(63,37,30,.2);
     }
     .card-head{
       display:flex;
       align-items:center;
-      gap:14px;
-      margin-bottom:12px;
+      gap:6px;
+      margin-bottom:6px;
     }
     .card-icon{
       width:15px;
@@ -99,25 +99,26 @@
     }
     .card-title{
       font-family:Georgia,serif;
-      font-size:20px;
+      font-size:11px;
       font-weight:700;
       margin:0;
+      line-height:1.2;
     }
     .card-desc{
       color:var(--muted);
-      font-size:14px;
-      line-height:1.4;
-      margin-bottom:20px;
+      font-size:10px;
+      line-height:1.2;
+      margin-bottom:10px;
     }
     .btn{
       background:var(--ink);
       color:#fff;
       border:0;
-      border-radius:12px;
-      padding:12px 16px;
+      border-radius:8px;
+      padding:6px 8px;
       font-weight:800;
       text-align:center;
-      font-size:14px;
+      font-size:10px;
     }
   </style>
 </head>
@@ -148,14 +149,15 @@ for (let i = 1; i <= totalTests; i++) {
     <div>
       <div class="card-head">
         <div class="card-icon">${i}</div>
-        <h2 class="card-title">Practice Test ${i}</h2>
+        <h2 class="card-title">Test ${i}</h2>
       </div>
-      <div class="card-desc">State Board licensing preparation practice exam #${i}.</div>
+      <div class="card-desc">Practice exam #${i}.</div>
     </div>
-    <div class="btn">Start Test ${i} →</div>
+    <div class="btn">Start →</div>
   `;
   grid.appendChild(card);
 }
 </script>
 </body>
 </html>
+   
