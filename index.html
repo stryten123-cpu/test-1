@@ -28,20 +28,22 @@
     }
     .header{
       text-align:center;
-      margin-bottom:40px;
+      margin-bottom:30px;
     }
     .mark{
       display:inline-grid;
       place-items:center;
-      width:56px;
-      height:56px;
-      border-radius:18px;
-      background:var(--rose);
-      color:#fff;
-      font-family:Georgia,serif;
-      font-size:32px;
+      width:90px;
+      height:54px;
+      border-radius:10px;
+      overflow:hidden;
       margin-bottom:14px;
-      box-shadow:0 10px 25px rgba(181,31,70,0.3);
+      box-shadow:0 10px 25px rgba(0,0,0,0.18);
+    }
+    .mark img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
     }
     h1{
       font-family:Georgia,"Times New Roman",serif;
@@ -53,6 +55,22 @@
       font-size:18px;
       max-width:600px;
       margin:0 auto;
+    }
+    .search-box {
+      max-width: 500px;
+      margin: 25px auto 0;
+    }
+    .search-box input {
+      width: 100%;
+      padding: 14px 20px;
+      border-radius: 12px;
+      border: 1px solid rgba(0,0,0,0.15);
+      font-size: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      outline: none;
+    }
+    .search-box input:focus {
+      border-color: var(--rose);
     }
     .grid{
       display:grid;
@@ -122,45 +140,54 @@
 <body>
   <main class="shell">
     <div class="header">
-      <span class="mark">N</span>
+      <div class="mark">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Obverse_of_the_series_2009_%24100_Federal_Reserve_Note.jpg" alt="$100 Bill">
+      </div>
       <h1>Cố Lên</h1>
-      <p>Select a practice quiz below .</p>
+      <p>Chọn một trong những bài Test này.</p>
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search tests (e.g., Test 15)..." onkeyup="filterTests()" />
+      </div>
     </div>
 
     <div id="quizGrid" class="grid"></div>
   </main>
 
 <script>
-const testList = [
-  { id: 1, file: "test1.html", title: "Practice Test 1", desc: "20 questions covering blood spills, manicures, and safety." },
-  { id: 2, file: "test2.html", title: "Practice Test 2", desc: "20 questions covering cuticle care, acrylics, and sanitation." },
-  { id: 3, file: "test3.html", title: "Practice Test 3", desc: "20 questions covering nail diseases and disorders." },
-  { id: 4, file: "test4.html", title: "Practice Test 4", desc: "20 questions covering monomer liquid and polymer powder." },
-  { id: 5, file: "test5.html", title: "Practice Test 5", desc: "20 questions covering UV/LED gel enhancements." },
-  { id: 6, file: "test6.html", title: "Practice Test 6", desc: "20 questions covering electric filing and nail tips." },
-  { id: 7, file: "test7.html", title: "Practice Test 7", desc: "20 questions covering pedicures and reflexology." },
-  { id: 8, file: "test8.html", title: "Practice Test 8", desc: "20 questions covering chemistry and salon safety." },
-  { id: 9, file: "test9.html", title: "Practice Test 9", desc: "20 questions covering state laws and licensing rules." },
-  { id: 10, file: "test10.html", title: "Practice Test 10", desc: "Comprehensive 20-question final review exam." }
-];
-
+// Automatically generates cards for Test 1 through Test 25
+const totalTests = 25;
 const grid = document.getElementById("quizGrid");
-testList.forEach(item => {
+
+for (let i = 1; i <= totalTests; i++) {
   const card = document.createElement("a");
   card.className = "card";
-  card.href = item.file;
+  card.href = `test${i}.html`;
+  card.setAttribute("data-title", `Practice Test ${i}`);
   card.innerHTML = `
     <div>
       <div class="card-head">
-        <div class="card-icon">${item.id}</div>
-        <h2 class="card-title">${item.title}</h2>
+        <div class="card-icon">${i}</div>
+        <h2 class="card-title">Practice Test ${i}</h2>
       </div>
-      <div class="card-desc">${item.desc}</div>
+      <div class="card-desc">State Board licensing preparation practice exam #${i}.</div>
     </div>
-    <div class="btn">Start Test ${item.id} →</div>
+    <div class="btn">Start Test ${i} →</div>
   `;
   grid.appendChild(card);
-});
+}
+
+function filterTests() {
+  const query = document.getElementById("searchInput").value.toLowerCase();
+  const cards = document.querySelectorAll(".card");
+  cards.forEach(card => {
+    const title = card.getAttribute("data-title").toLowerCase();
+    if (title.includes(query)) {
+      card.style.display = "flex";
+    } else {
+      card.style.display = "none";
+    }
+  });
+}
 </script>
 </body>
 </html>
